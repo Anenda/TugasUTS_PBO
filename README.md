@@ -8,9 +8,9 @@ Aplikasi ini memiliki sistem menu dinamis yang dikelola oleh admin dan alur pemb
 
 ## 👥 Kelompok 8
 **Nama Anggota:**
-1. Ahmad Cahaya
-2. Budi Santoso
-3. Clara Melati
+1. Azhriler Lintang (3337230087)
+2. Cahaya Jiwa Anenda (3337230086)
+3. Muhammad Zidan Heiqmatyar (3337230084)
 
 ---
 
@@ -18,12 +18,12 @@ Aplikasi ini memiliki sistem menu dinamis yang dikelola oleh admin dan alur pemb
 Untuk keperluan pengujian, gunakan akun berikut:
 
 **Akun Admin**  
-📧 `admin@example.com`  
-🔒 `admin123`
+📧 admin@example.com  
+🔒 admin123  
 
 **Akun User**  
-📧 `user@example.com`  
-🔒 `user123`
+📧 user@example.com  
+🔒 user123  
 
 ---
 
@@ -32,7 +32,8 @@ Untuk keperluan pengujian, gunakan akun berikut:
 2.  [Persiapan & Instalasi](#persiapan--instalasi)
 3.  [Alur Kerja Git & Kontribusi Kode](#alur-kerja-git--kontribusi-kode)
 4.  [Struktur Database (Firestore)](#struktur-database-firestore)
-5.  [Arsitektur & State Management](#arsitektur--state-management)
+5.  [Contoh Isi Dokumen Firestore](#contoh-isi-dokumen-firestore)
+6.  [Arsitektur & State Management](#arsitektur--state-management)
 
 ---
 
@@ -60,14 +61,12 @@ Pastikan Anda sudah menginstal Flutter SDK (versi 3.x.x atau lebih baru).
 ### Langkah-langkah
 1.  **Clone repository ini:**
     ```bash
-    git clone https://github.com/Azhriler7/flutter-mycafe.git
+    git clone https://github.com/NAMA_USER_ANDA/nama-repo-anda.git
     ```
-
 2.  **Masuk ke direktori proyek:**
     ```bash
-    cd flutter-mycafe
+    cd nama-repo-anda
     ```
-
 3.  **Setup Firebase:**
     * Proyek ini menggunakan Firebase. File konfigurasi `google-services.json` **tidak disertakan** di repository.
     * Setiap anggota tim harus membuat proyek Firebase sendiri untuk development.
@@ -78,7 +77,6 @@ Pastikan Anda sudah menginstal Flutter SDK (versi 3.x.x atau lebih baru).
     ```bash
     flutter pub get
     ```
-
 5.  **Jalankan aplikasi:**
     ```bash
     flutter run -d chrome  # Untuk Web
@@ -86,7 +84,11 @@ Pastikan Anda sudah menginstal Flutter SDK (versi 3.x.x atau lebih baru).
     ```
 
 ### Dependensi Utama
-* **`firebase_core`**, **`firebase_auth`**, **`cloud_firestore`**, **`provider`**, **`intl`**
+* **`firebase_core`**
+* **`firebase_auth`**
+* **`cloud_firestore`**
+* **`provider`**
+* **`intl`**
 
 ---
 
@@ -94,10 +96,24 @@ Pastikan Anda sudah menginstal Flutter SDK (versi 3.x.x atau lebih baru).
 
 Semua pekerjaan harus dilakukan di *branch* terpisah untuk menjaga *branch* `main` tetap stabil.
 
-1.  **Update `main`:** `git checkout main` lalu `git pull origin main`.
-2.  **Buat Branch Baru:** `git checkout -b feature/nama-fitur-baru`.
-3.  **Kerjakan Kode & Commit:** `git add .` lalu `git commit -m "pesan commit"`.
-4.  **Push Branch:** `git push -u origin feature/nama-fitur-baru`.
+1.  **Update `main`:**
+    ```bash
+    git checkout main
+    git pull origin main
+    ```
+2.  **Buat Branch Baru:**
+    ```bash
+    git checkout -b feature/nama-fitur-baru
+    ```
+3.  **Kerjakan Kode & Commit:**
+    ```bash
+    git add .
+    git commit -m "pesan commit"
+    ```
+4.  **Push Branch:**
+    ```bash
+    git push -u origin feature/nama-fitur-baru
+    ```
 5.  **Buat Pull Request** di GitHub untuk di-review.
 
 ---
@@ -109,46 +125,40 @@ Ini adalah "kontrak" data final antara Backend dan Frontend.
 ### Koleksi: `users`
 * **Tujuan:** Menyimpan data profil pengguna.
 * **ID Dokumen:** `UID` dari Firebase Authentication.
-* **Fields:**
-  - `username`: String
-  - `email`: String
-  - `gender`: String
-  - `createdAt`: Timestamp
-  - `isAdmin`: Boolean (jika true berarti admin)
+* **Fields:** `username` (String), `email` (String), `gender` (String), `createdAt` (Timestamp), `isAdmin` (Boolean)
 
 ### Koleksi: `menu`
 * **Tujuan:** Menyimpan **semua** item menu yang bisa dipesan dan dikelola oleh admin.
 * **ID Dokumen:** Auto-ID oleh Firestore.
-* **Fields:**
-  - `namaMenu`: String
-  - `harga`: Number
-  - `kategori`: String (contoh: `makanan`, `minuman`)
-  - `isTersedia`: Boolean
-  - `gambar`: String (URL Firebase Storage)
+* **Fields:** `namaMenu` (String), `harga` (Number), `kategori` (String), `isTersedia` (Boolean)
 
 ### Koleksi: `pesanan`
 * **Tujuan:** Menyimpan data setiap pesanan yang sudah final.
 * **ID Dokumen:** Auto-ID oleh Firestore.
-* **Fields:**
-  - `userId`: String
-  - `namaPemesan`: String
-  - `noMeja`: String
-  - `items`: Array of Maps → isi: `namaMenu`, `harga`, `jumlah`
-  - `totalHarga`: Number
-  - `statusPesanan`: String (`baru`, `selesai`)
-  - `waktuPesan`: Timestamp
+* **Fields:** `userId` (String), `namaPemesan` (String), `noMeja` (String), `items` (Array of Maps), `totalHarga` (Number), `statusPesanan` (String: 'baru', 'selesai'), `waktuPesan` (Timestamp), `waktuSelesai` (Timestamp, optional)
 
 ---
 
-## Arsitektur & State Management
+## Contoh Isi Dokumen Firestore
 
-Proyek ini menggunakan arsitektur **MVC (Model-View-Controller)**.
+Berikut adalah contoh data dari masing-masing koleksi di Firestore untuk kebutuhan testing.
 
-* **Model:** Struktur data di dalam `lib/models/`
-* **View:** Semua kode UI di dalam `lib/view/`
-* **Controller:** Lapisan logika bisnis menggunakan paket **`provider`** sebagai solusi *state management*. Setiap *controller* akan dibuat menggunakan `ChangeNotifier`.
-* **Navigasi:** Menggunakan **`Navigator`** bawaan Flutter atau `Get.to()` dari package `get`.
-
----
-
-Selamat mencoba & selamat ngopi! ☕🍩
+### Koleksi: `pesanan`
+```json
+{
+  "items": [
+    { "namaMenu": "Kopi Susu", "jumlah": 2, "harga": 20000 },
+    { "namaMenu": "Es Teh Manis", "jumlah": 2, "harga": 15000 },
+    { "namaMenu": "Cheese Cake", "jumlah": 1, "harga": 35000 },
+    { "namaMenu": "Iced Americano", "jumlah": 1, "harga": 22000 },
+    { "namaMenu": "Iced Latte", "jumlah": 1, "harga": 28000 },
+    { "namaMenu": "Cappuccino", "jumlah": 1, "harga": 25000 }
+  ],
+  "namaPemesan": "user@example.com",
+  "noMeja": "56",
+  "statusPesanan": "selesai",
+  "totalHarga": 180000,
+  "userId": "6sPsPZVw0abOrsdFziuvKTgUSxj1",
+  "waktuPesan": "2025-07-29T05:56:42Z",
+  "waktuSelesai": "2025-07-29T07:47:34Z"
+}
