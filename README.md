@@ -139,12 +139,12 @@ Ini adalah "kontrak" data final antara Backend dan Frontend.
 
 ---
 
-## Contoh Isi Dokumen Firestore
+## 📄 Contoh Isi Dokumen Firestore
 
-Berikut adalah contoh data dari masing-masing koleksi di Firestore untuk kebutuhan testing.
+Berikut adalah contoh isi dari masing-masing dokumen dalam Firestore Database yang digunakan pada aplikasi ini. Data ini bisa diinput secara manual melalui Firebase Console untuk keperluan testing awal:
 
-### Koleksi: `pesanan`
 ```json
+// Koleksi: pesanan
 {
   "items": [
     { "namaMenu": "Kopi Susu", "jumlah": 2, "harga": 20000 },
@@ -161,4 +161,21 @@ Berikut adalah contoh data dari masing-masing koleksi di Firestore untuk kebutuh
   "userId": "6sPsPZVw0abOrsdFziuvKTgUSxj1",
   "waktuPesan": "2025-07-29T05:56:42Z",
   "waktuSelesai": "2025-07-29T07:47:34Z"
+}
+
+// Koleksi: menu
+{
+  "namaMenu": "Roti Panggang",
+  "harga": 20000,
+  "kategori": "dessert",
+  "isTersedia": true
+}
+
+// Koleksi: users
+{
+  "username": "user",
+  "email": "user@example.com",
+  "gender": "Wanita",
+  "isAdmin": false,
+  "createdAt": "2025-07-29T07:51:11Z"
 }
