@@ -21,7 +21,9 @@ Aplikasi ini memiliki sistem menu dinamis yang dikelola oleh admin dan alur pemb
 ### Halaman Sisi Pelanggan (User)
 1.  **Layar Autentikasi:** Mencakup halaman Login, Register, dan Lupa Password.
 2.  **Dashboard Pengguna:** Halaman utama terpadu yang menampilkan daftar menu dari Firestore dan ringkasan keranjang belanja di bagian bawah.
-3.  **Profil Pengguna:** Halaman untuk mengelola data pribadi, serta fitur Logout dan Hapus Akun.
+3.  **Menu Lainnya:** Menampilkan seluruh daftar menu yang tersedia.
+4.  **Keranjang:** Menampilkan item yang ditambahkan, jumlah, dan total harga.
+5.  **Profil Pengguna:** Halaman untuk mengelola data pribadi, serta fitur Logout dan Hapus Akun.
 
 ### Halaman Sisi Admin
 1.  **Dashboard Admin:** Halaman utama yang menampilkan daftar pesanan masuk (`pesanan` baru) secara *real-time*.
@@ -130,6 +132,7 @@ Semua pekerjaan harus dilakukan di *branch* terpisah untuk menjaga *branch* `mai
   - `harga`: Number
   - `kategori`: String (`makanan`, `minuman`, dll.)
   - `isTersedia`: Boolean
+  - `gambar`: String (opsional)
 
 ### Koleksi: `pesanan`
 - ID: Auto-ID
