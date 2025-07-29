@@ -6,24 +6,44 @@ Aplikasi ini memiliki sistem menu dinamis yang dikelola oleh admin dan alur pemb
 
 ---
 
+## 👥 Kelompok 8
+**Nama Anggota:**
+1. Ahmad Cahaya
+2. Budi Santoso
+3. Clara Melati
+
+---
+
+## Akun Uji Coba
+Untuk keperluan pengujian, gunakan akun berikut:
+
+**Akun Admin**  
+📧 `admin@example.com`  
+🔒 `admin123`
+
+**Akun User**  
+📧 `user@example.com`  
+🔒 `user123`
+
+---
+
 ## Daftar Isi
 1.  [Daftar Halaman Aplikasi](#daftar-halaman-aplikasi)
-2.  [Akun Login & Nama Kelompok](#akun-login--nama-kelompok)
-3.  [Persiapan & Instalasi](#persiapan--instalasi)
-4.  [Alur Kerja Git & Kontribusi Kode](#alur-kerja-git--kontribusi-kode)
-5.  [Struktur Database (Firestore)](#struktur-database-firestore)
-6.  [Arsitektur & State Management](#arsitektur--state-management)
+2.  [Persiapan & Instalasi](#persiapan--instalasi)
+3.  [Alur Kerja Git & Kontribusi Kode](#alur-kerja-git--kontribusi-kode)
+4.  [Struktur Database (Firestore)](#struktur-database-firestore)
+5.  [Arsitektur & State Management](#arsitektur--state-management)
 
 ---
 
 ## Daftar Halaman Aplikasi
 
+Berikut adalah rincian halaman yang akan dibuat untuk masing-masing peran.
+
 ### Halaman Sisi Pelanggan (User)
 1.  **Layar Autentikasi:** Mencakup halaman Login, Register, dan Lupa Password.
 2.  **Dashboard Pengguna:** Halaman utama terpadu yang menampilkan daftar menu dari Firestore dan ringkasan keranjang belanja di bagian bawah.
-3.  **Menu Lainnya:** Menampilkan seluruh daftar menu yang tersedia.
-4.  **Keranjang:** Menampilkan item yang ditambahkan, jumlah, dan total harga.
-5.  **Profil Pengguna:** Halaman untuk mengelola data pribadi, serta fitur Logout dan Hapus Akun.
+3.  **Profil Pengguna:** Halaman untuk mengelola data pribadi, serta fitur Logout dan Hapus Akun.
 
 ### Halaman Sisi Admin
 1.  **Dashboard Admin:** Halaman utama yang menampilkan daftar pesanan masuk (`pesanan` baru) secara *real-time*.
@@ -33,28 +53,11 @@ Aplikasi ini memiliki sistem menu dinamis yang dikelola oleh admin dan alur pemb
 
 ---
 
-## Akun Login & Nama Kelompok
-
-### 🔐 Akun Login
-**Akun Admin:**
-- Email: `admin@example.com`
-- Password: `admin123`
-
-**Akun User:**
-- Email: `user@example.com`
-- Password: `user123`
-
-### 👥 Nama Kelompok
-> Kelompok 8 ✨
-
----
-
 ## Persiapan & Instalasi
 
 Pastikan Anda sudah menginstal Flutter SDK (versi 3.x.x atau lebih baru).
 
 ### Langkah-langkah
-
 1.  **Clone repository ini:**
     ```bash
     git clone https://github.com/Azhriler7/flutter-mycafe.git
@@ -66,19 +69,12 @@ Pastikan Anda sudah menginstal Flutter SDK (versi 3.x.x atau lebih baru).
     ```
 
 3.  **Setup Firebase:**
-    - Buat project Firebase baru di [https://console.firebase.google.com](https://console.firebase.google.com)
-    - Aktifkan layanan berikut:
-      - **Authentication** (Email/Password)
-      - **Cloud Firestore**
-    - Download file konfigurasi:
-      - Untuk Android: `google-services.json`
-      - Untuk Web: salin konfigurasi dan tambahkan di `index.html`
-    - Jalankan konfigurasi Firebase CLI:
-      ```bash
-      flutterfire configure
-      ```
+    * Proyek ini menggunakan Firebase. File konfigurasi `google-services.json` **tidak disertakan** di repository.
+    * Setiap anggota tim harus membuat proyek Firebase sendiri untuk development.
+    * Jalankan `flutterfire configure` dan hubungkan ke proyek Firebase Anda (pilih platform **Android** dan **Web**).
+    * Aktifkan layanan: **Authentication (Email/Password)** dan **Firestore Database**.
 
-4.  **Install semua package:**
+4.  **Install dependensi:**
     ```bash
     flutter pub get
     ```
@@ -89,59 +85,55 @@ Pastikan Anda sudah menginstal Flutter SDK (versi 3.x.x atau lebih baru).
     flutter run            # Untuk Android
     ```
 
+### Dependensi Utama
+* **`firebase_core`**, **`firebase_auth`**, **`cloud_firestore`**, **`provider`**, **`intl`**
+
 ---
 
 ## Alur Kerja Git & Kontribusi Kode
 
 Semua pekerjaan harus dilakukan di *branch* terpisah untuk menjaga *branch* `main` tetap stabil.
 
-1.  **Update `main`:**
-    ```bash
-    git checkout main
-    git pull origin main
-    ```
-2.  **Buat Branch Baru:**
-    ```bash
-    git checkout -b feature/nama-fitur-baru
-    ```
-3.  **Commit & Push:**
-    ```bash
-    git add .
-    git commit -m "deskripsi commit"
-    git push -u origin feature/nama-fitur-baru
-    ```
-4.  **Buat Pull Request** di GitHub untuk di-review.
+1.  **Update `main`:** `git checkout main` lalu `git pull origin main`.
+2.  **Buat Branch Baru:** `git checkout -b feature/nama-fitur-baru`.
+3.  **Kerjakan Kode & Commit:** `git add .` lalu `git commit -m "pesan commit"`.
+4.  **Push Branch:** `git push -u origin feature/nama-fitur-baru`.
+5.  **Buat Pull Request** di GitHub untuk di-review.
 
 ---
 
 ## Struktur Database (Firestore)
 
+Ini adalah "kontrak" data final antara Backend dan Frontend.
+
 ### Koleksi: `users`
-- ID: UID dari Firebase Authentication
-- Fields:
+* **Tujuan:** Menyimpan data profil pengguna.
+* **ID Dokumen:** `UID` dari Firebase Authentication.
+* **Fields:**
   - `username`: String
   - `email`: String
   - `gender`: String
   - `createdAt`: Timestamp
-  - `isAdmin`: Boolean
+  - `isAdmin`: Boolean (jika true berarti admin)
 
 ### Koleksi: `menu`
-- ID: Auto-ID
-- Fields:
+* **Tujuan:** Menyimpan **semua** item menu yang bisa dipesan dan dikelola oleh admin.
+* **ID Dokumen:** Auto-ID oleh Firestore.
+* **Fields:**
   - `namaMenu`: String
   - `harga`: Number
-  - `kategori`: String (`makanan`, `minuman`, dll.)
+  - `kategori`: String (contoh: `makanan`, `minuman`)
   - `isTersedia`: Boolean
-  - `gambar`: String (opsional)
+  - `gambar`: String (URL Firebase Storage)
 
 ### Koleksi: `pesanan`
-- ID: Auto-ID
-- Fields:
+* **Tujuan:** Menyimpan data setiap pesanan yang sudah final.
+* **ID Dokumen:** Auto-ID oleh Firestore.
+* **Fields:**
   - `userId`: String
   - `namaPemesan`: String
   - `noMeja`: String
-  - `items`: Array of Maps
-    - Setiap item: `namaMenu`, `harga`, `jumlah`
+  - `items`: Array of Maps → isi: `namaMenu`, `harga`, `jumlah`
   - `totalHarga`: Number
   - `statusPesanan`: String (`baru`, `selesai`)
   - `waktuPesan`: Timestamp
@@ -150,17 +142,12 @@ Semua pekerjaan harus dilakukan di *branch* terpisah untuk menjaga *branch* `mai
 
 ## Arsitektur & State Management
 
-Proyek ini menggunakan arsitektur **MVC (Model-View-Controller)** dengan pendekatan modular.
+Proyek ini menggunakan arsitektur **MVC (Model-View-Controller)**.
 
-- **Model:** Struktur data di `lib/model/`
-- **View:** UI pages di `lib/view/screen/{auth, admin, user}/`
-- **Controller:** `lib/controller/` (menggunakan `ChangeNotifier` dari Provider)
-
-### Paket yang Digunakan:
-- `firebase_core`, `firebase_auth`, `cloud_firestore`
-- `provider` untuk state management
-- `get` untuk navigasi
-- `intl` untuk format mata uang
+* **Model:** Struktur data di dalam `lib/models/`
+* **View:** Semua kode UI di dalam `lib/view/`
+* **Controller:** Lapisan logika bisnis menggunakan paket **`provider`** sebagai solusi *state management*. Setiap *controller* akan dibuat menggunakan `ChangeNotifier`.
+* **Navigasi:** Menggunakan **`Navigator`** bawaan Flutter atau `Get.to()` dari package `get`.
 
 ---
 
