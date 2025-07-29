@@ -1,66 +1,164 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Aplikasi Kafe Sederhana (Android & Web) ☕
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Aplikasi pemesanan untuk kafe yang dibangun menggunakan Flutter dan Firebase. Proyek ini dirancang untuk platform **Android** dan **Web**.
 
-## About Laravel
+Aplikasi ini memiliki sistem menu dinamis yang dikelola oleh admin dan alur pembayaran yang disederhanakan dengan verifikasi manual oleh staf di meja pelanggan.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+---
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Daftar Isi
+1.  [Daftar Halaman Aplikasi](#daftar-halaman-aplikasi)
+2.  [Akun Login & Nama Kelompok](#akun-login--nama-kelompok)
+3.  [Persiapan & Instalasi](#persiapan--instalasi)
+4.  [Alur Kerja Git & Kontribusi Kode](#alur-kerja-git--kontribusi-kode)
+5.  [Struktur Database (Firestore)](#struktur-database-firestore)
+6.  [Arsitektur & State Management](#arsitektur--state-management)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+---
 
-## Learning Laravel
+## Daftar Halaman Aplikasi
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### Halaman Sisi Pelanggan (User)
+1.  **Layar Autentikasi:** Mencakup halaman Login, Register, dan Lupa Password.
+2.  **Dashboard Pengguna:** Halaman utama terpadu yang menampilkan daftar menu dari Firestore dan ringkasan keranjang belanja di bagian bawah.
+3.  **Profil Pengguna:** Halaman untuk mengelola data pribadi, serta fitur Logout dan Hapus Akun.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+### Halaman Sisi Admin
+1.  **Dashboard Admin:** Halaman utama yang menampilkan daftar pesanan masuk (`pesanan` baru) secara *real-time*.
+2.  **Detail Pesanan:** Halaman yang menampilkan rincian lengkap dari sebuah pesanan yang dipilih.
+3.  **Manajemen Menu (CRUD):** Halaman untuk menambah, mengubah, dan menghapus item di koleksi `menu`.
+4.  **Profil Admin:** Halaman sederhana untuk admin melakukan Logout.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+---
 
-## Laravel Sponsors
+## Akun Login & Nama Kelompok
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### 🔐 Akun Login
+**Akun Admin:**
+- Email: `admin@example.com`
+- Password: `admin123`
 
-### Premium Partners
+**Akun User:**
+- Email: `user@example.com`
+- Password: `user123`
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+### 👥 Nama Kelompok
+> Kelompok Cahaya DevTeam ✨
 
-## Contributing
+---
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## Persiapan & Instalasi
 
-## Code of Conduct
+Pastikan Anda sudah menginstal Flutter SDK (versi 3.x.x atau lebih baru).
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### Langkah-langkah
 
-## Security Vulnerabilities
+1.  **Clone repository ini:**
+    ```bash
+    git clone https://github.com/Azhriler7/flutter-mycafe.git
+    ```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+2.  **Masuk ke direktori proyek:**
+    ```bash
+    cd flutter-mycafe
+    ```
 
-## License
+3.  **Setup Firebase:**
+    - Buat project Firebase baru di [https://console.firebase.google.com](https://console.firebase.google.com)
+    - Aktifkan layanan berikut:
+      - **Authentication** (Email/Password)
+      - **Cloud Firestore**
+    - Download file konfigurasi:
+      - Untuk Android: `google-services.json`
+      - Untuk Web: salin konfigurasi dan tambahkan di `index.html`
+    - Jalankan konfigurasi Firebase CLI:
+      ```bash
+      flutterfire configure
+      ```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+4.  **Install semua package:**
+    ```bash
+    flutter pub get
+    ```
+
+5.  **Jalankan aplikasi:**
+    ```bash
+    flutter run -d chrome  # Untuk Web
+    flutter run            # Untuk Android
+    ```
+
+---
+
+## Alur Kerja Git & Kontribusi Kode
+
+Semua pekerjaan harus dilakukan di *branch* terpisah untuk menjaga *branch* `main` tetap stabil.
+
+1.  **Update `main`:**
+    ```bash
+    git checkout main
+    git pull origin main
+    ```
+2.  **Buat Branch Baru:**
+    ```bash
+    git checkout -b feature/nama-fitur-baru
+    ```
+3.  **Commit & Push:**
+    ```bash
+    git add .
+    git commit -m "deskripsi commit"
+    git push -u origin feature/nama-fitur-baru
+    ```
+4.  **Buat Pull Request** di GitHub untuk di-review.
+
+---
+
+## Struktur Database (Firestore)
+
+### Koleksi: `users`
+- ID: UID dari Firebase Authentication
+- Fields:
+  - `username`: String
+  - `email`: String
+  - `gender`: String
+  - `createdAt`: Timestamp
+  - `isAdmin`: Boolean
+
+### Koleksi: `menu`
+- ID: Auto-ID
+- Fields:
+  - `namaMenu`: String
+  - `harga`: Number
+  - `kategori`: String (`makanan`, `minuman`, dll.)
+  - `isTersedia`: Boolean
+
+### Koleksi: `pesanan`
+- ID: Auto-ID
+- Fields:
+  - `userId`: String
+  - `namaPemesan`: String
+  - `noMeja`: String
+  - `items`: Array of Maps
+    - Setiap item: `namaMenu`, `harga`, `jumlah`
+  - `totalHarga`: Number
+  - `statusPesanan`: String (`baru`, `selesai`)
+  - `waktuPesan`: Timestamp
+
+---
+
+## Arsitektur & State Management
+
+Proyek ini menggunakan arsitektur **MVC (Model-View-Controller)** dengan pendekatan modular.
+
+- **Model:** Struktur data di `lib/model/`
+- **View:** UI pages di `lib/view/screen/{auth, admin, user}/`
+- **Controller:** `lib/controller/` (menggunakan `ChangeNotifier` dari Provider)
+
+### Paket yang Digunakan:
+- `firebase_core`, `firebase_auth`, `cloud_firestore`
+- `provider` untuk state management
+- `get` untuk navigasi
+- `intl` untuk format mata uang
+
+---
+
+Selamat mencoba & selamat ngopi! ☕🍩
