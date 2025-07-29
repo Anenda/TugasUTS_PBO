@@ -43,7 +43,7 @@ Aplikasi ini memiliki sistem menu dinamis yang dikelola oleh admin dan alur pemb
 - Password: `user123`
 
 ### 👥 Nama Kelompok
-> Kelompok Cahaya DevTeam ✨
+> Kelompok 8 ✨
 
 ---
 
